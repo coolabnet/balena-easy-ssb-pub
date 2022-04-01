@@ -1,0 +1,26 @@
+version: '2.1'
+
+services:
+
+  ssb:
+    build:
+      context: .
+
+    ports:
+      - 8008:8008
+      - 8007:8007
+      - 8001:80
+    environment:
+      SET_HOSTNAME: ssb
+    labels:
+      # io.balena.features.balena-socket: '1'
+      # io.balena.features.kernel-modules: '1'
+      # io.balena.features.firmware: '1'
+      # io.balena.features.dbus: '1'
+      # io.balena.features.sysfs: '1'
+      # io.balena.features.procfs: '1'
+      # io.balena.features.journal-logs: '1'
+      io.balena.features.supervisor-api: '1'
+      io.balena.features.balena-api: '1'
+      # io.balena.update.strategy: download-then-kill
+      # io.balena.update.handover-timeout: ''

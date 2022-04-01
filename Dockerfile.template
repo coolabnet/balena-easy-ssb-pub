@@ -1,0 +1,30 @@
+FROM node:8.8.0-slim
+
+RUN apt-get update
+RUN apt-get install  -y \
+  libc6 libcurl3 zlib1g libtool build-essential  git python gyp jq
+
+#RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+
+#RUN . /root/.nvm/nvm.sh && nvm install $NODE_VERSION && nvm alias default $NODE_VERSION
+
+
+COPY libsodium-1.0.18-stable.tar.gz .
+
+
+
+RUN   tar -xvf libsodium-1.0.18-stable.tar.gz && \
+  cd /libsodium-stable && ./configure && make && make check && make install
+
+WORKDIR /usr/src/app
+RUN git clone https://github.com/staltz/easy-ssb-pub.git
+
+
+EXPOSE 80
+EXPOSE 8008
+EXPOSE 8007
+RUN cd ./easy-ssb-pub/ && npm install
+WORKDIR /usr/src/app/easy-ssb-pub/
+COPY start.sh .
+RUN chmod a+x start.sh
+CMD bash /usr/src/app/easy-ssb-pub/start.sh

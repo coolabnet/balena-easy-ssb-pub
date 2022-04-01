@@ -1,0 +1,25 @@
+
+
+https://gitlab.com/coletivo-coolab/balena-easy-ssb
+
+
+name: balenaEasySSBPub
+type: sw.application
+description: >-
+   A secure scuttlebut pub based on https://github.com/staltz/easy-ssb-pub
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/coolabnet/balena-easy-ssb-pub'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/coolabnet/balena-easy-ssb-pub/main/img/logo.png
+data:
+
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - odroid-xu4
+version: 0.1
